@@ -26,111 +26,140 @@ namespace webapiV2.Migrations
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
                     b.Property<bool>("AcceptTerms")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("accept_terms");
 
                     b.Property<string>("Adi")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("adi");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("email");
 
                     b.Property<bool>("IsDisabled")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_disabled");
 
                     b.Property<string>("Password")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("password");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("password_hash");
 
                     b.Property<DateTime?>("PasswordReset")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("password_reset");
 
                     b.Property<string>("ResetToken")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("reset_token");
 
                     b.Property<DateTime?>("ResetTokenExpires")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("reset_token_expires");
 
                     b.Property<int>("Role")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("role");
 
                     b.Property<string>("Soyadi")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("soyadi");
 
                     b.Property<DateTime?>("Updated")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated");
 
                     b.Property<string>("VerificationToken")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("verification_token");
 
                     b.Property<DateTime?>("Verified")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("verified");
 
                     b.HasKey("id");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("account");
                 });
 
             modelBuilder.Entity("webapiV2.Entities.Account", b =>
                 {
                     b.OwnsMany("webapiV2.Entities.RefreshToken", "RefreshTokens", b1 =>
                         {
-                            b1.Property<int>("id")
+                            b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
-                                .HasColumnType("integer");
+                                .HasColumnType("integer")
+                                .HasColumnName("id");
 
-                            NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b1.Property<int>("id"));
+                            NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b1.Property<int>("Id"));
 
-                            b1.Property<int>("Accountid")
-                                .HasColumnType("integer");
+                            b1.Property<int>("AccountId")
+                                .HasColumnType("integer")
+                                .HasColumnName("account_id");
 
                             b1.Property<DateTime>("Created")
-                                .HasColumnType("timestamp with time zone");
+                                .HasColumnType("timestamp with time zone")
+                                .HasColumnName("created");
 
                             b1.Property<string>("CreatedByIp")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("created_by_ip");
 
                             b1.Property<DateTime>("Expires")
-                                .HasColumnType("timestamp with time zone");
+                                .HasColumnType("timestamp with time zone")
+                                .HasColumnName("expires");
 
                             b1.Property<string>("ReasonRevoked")
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("reason_revoked");
 
                             b1.Property<string>("ReplacedByToken")
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("resplaced_by_token");
 
                             b1.Property<DateTime?>("Revoked")
-                                .HasColumnType("timestamp with time zone");
+                                .HasColumnType("timestamp with time zone")
+                                .HasColumnName("revoked");
 
                             b1.Property<string>("RevokedByIp")
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("revoked_by_ip");
 
                             b1.Property<string>("Token")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasColumnType("text")
+                                .HasColumnName("token");
 
-                            b1.HasKey("id");
+                            b1.HasKey("Id");
 
-                            b1.HasIndex("Accountid");
+                            b1.HasIndex("AccountId");
 
-                            b1.ToTable("RefreshToken");
+                            b1.ToTable("refresh_token");
 
                             b1.WithOwner("Account")
-                                .HasForeignKey("Accountid");
+                                .HasForeignKey("AccountId");
 
                             b1.Navigation("Account");
                         });

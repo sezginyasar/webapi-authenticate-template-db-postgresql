@@ -1,6 +1,7 @@
 # klasörler
 bin
 obj
+migrations
 
 # Editor directories and files
 .vscode/*

@@ -19,19 +19,19 @@ public class UpdateRequest {
     }
 
     [EmailAddress]
-    public string Email {
+    public string? Email {
         get => _email;
         set => _email = replaceEmptyWithNull(value);
     }
 
     [MinLength(6)]
-    public string Password {
+    public string? Password {
         get => _password;
         set => _password = replaceEmptyWithNull(value);
     }
 
     [Compare("Password")]
-    public string ConfirmPassword {
+    public string? ConfirmPassword {
         get => _confirmPassword;
         set => _confirmPassword = replaceEmptyWithNull(value);
     }
@@ -39,6 +39,6 @@ public class UpdateRequest {
     // helpers
     private string replaceEmptyWithNull(string value) {
         // alanı isteğe bağlı yapmak için boş dizeyi null ile değiştirin
-        return string.IsNullOrEmpty(value) ? null : value;
+        return string.IsNullOrWhiteSpace(value) ? null : value;
     }
 }

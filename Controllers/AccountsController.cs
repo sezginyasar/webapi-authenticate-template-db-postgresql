@@ -103,7 +103,7 @@ public class AccountsController : BaseController {
         return Ok(accounts);
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("user")]
     public ActionResult<AccountResponse> GetById(int id) {
         // users can get their own account and admins can get any account
         if (id != Account.id && Account.Role != Role.Admin)
@@ -120,7 +120,7 @@ public class AccountsController : BaseController {
         return Ok(account);
     }
 
-    [HttpPut("{id:int}")]
+    [HttpPut("update")]
     public ActionResult<AccountResponse> Update(int id, UpdateRequest model) {
         // users can update their own account and admins can update any account
         if (id != Account.id && Account.Role != Role.Admin)
@@ -137,7 +137,7 @@ public class AccountsController : BaseController {
         // return Ok(new { message = "Kullanıcı güncelleme başarılı" });
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete("delete")]
     public IActionResult Delete(int id) {
 
         // users can delete their own account and admins can delete any account
