@@ -103,6 +103,198 @@ namespace webapiV2.Migrations
                     b.ToTable("account");
                 });
 
+            modelBuilder.Entity("webapiV2.Entities.Logs.DbLogs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Browser")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
+                        .HasColumnName("browser");
+
+                    b.Property<string>("IpAdres")
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("ip_adres");
+
+                    b.Property<string>("Islem")
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("islem");
+
+                    b.Property<string>("Message")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
+                        .HasColumnName("message");
+
+                    b.Property<object>("Nesne")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("nesne");
+
+                    b.Property<Guid?>("NesneId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("nesne_id");
+
+                    b.Property<string>("Tablo")
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("tablo");
+
+                    b.Property<string>("Username")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("username");
+
+                    b.Property<DateTime>("Zaman")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("zaman");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("db_log");
+                });
+
+            modelBuilder.Entity("webapiV2.Entities.PageAuthorization.Pages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdditionalAuthFive")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("additional_auth_five");
+
+                    b.Property<string>("AdditionalAuthFour")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("additional_auth_four");
+
+                    b.Property<string>("AdditionalAuthOne")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("additional_auth_one");
+
+                    b.Property<string>("AdditionalAuthThree")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("additional_auth_three");
+
+                    b.Property<string>("AdditionalAuthTwo")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("additional_auth_two");
+
+                    b.Property<string>("Icon")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("icon");
+
+                    b.Property<short>("Order")
+                        .HasColumnType("smallint")
+                        .HasColumnName("order");
+
+                    b.Property<string>("PageGroupName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("page_group_name");
+
+                    b.Property<string>("PageName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("page_name");
+
+                    b.Property<int>("ParentId")
+                        .HasColumnType("integer")
+                        .HasColumnName("parent_id");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("path");
+
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint")
+                        .HasColumnName("status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("pages");
+                });
+
+            modelBuilder.Entity("webapiV2.Entities.PageAuthorization.UserPagePermissions", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("AdditionalAuthFive")
+                        .HasColumnType("boolean")
+                        .HasColumnName("additional_auth_five");
+
+                    b.Property<bool>("AdditionalAuthFour")
+                        .HasColumnType("boolean")
+                        .HasColumnName("additional_auth_four");
+
+                    b.Property<bool>("AdditionalAuthOne")
+                        .HasColumnType("boolean")
+                        .HasColumnName("additional_auth_one");
+
+                    b.Property<bool>("AdditionalAuthThree")
+                        .HasColumnType("boolean")
+                        .HasColumnName("additional_auth_three");
+
+                    b.Property<bool>("AdditionalAuthTwo")
+                        .HasColumnType("boolean")
+                        .HasColumnName("additional_auth_two");
+
+                    b.Property<bool>("Delete")
+                        .HasColumnType("boolean")
+                        .HasColumnName("Delete");
+
+                    b.Property<int>("PagesId")
+                        .HasColumnType("integer")
+                        .HasColumnName("page_id");
+
+                    b.Property<bool>("Read")
+                        .HasColumnType("boolean")
+                        .HasColumnName("read");
+
+                    b.Property<bool>("Save")
+                        .HasColumnType("boolean")
+                        .HasColumnName("save");
+
+                    b.Property<bool>("Update")
+                        .HasColumnType("boolean")
+                        .HasColumnName("Update");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PagesId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("user_page_permissions");
+                });
+
             modelBuilder.Entity("webapiV2.Entities.Account", b =>
                 {
                     b.OwnsMany("webapiV2.Entities.RefreshToken", "RefreshTokens", b1 =>
@@ -165,6 +357,30 @@ namespace webapiV2.Migrations
                         });
 
                     b.Navigation("RefreshTokens");
+                });
+
+            modelBuilder.Entity("webapiV2.Entities.PageAuthorization.UserPagePermissions", b =>
+                {
+                    b.HasOne("webapiV2.Entities.PageAuthorization.Pages", "Pages")
+                        .WithMany("UserPagePermissions")
+                        .HasForeignKey("PagesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("webapiV2.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Pages");
+                });
+
+            modelBuilder.Entity("webapiV2.Entities.PageAuthorization.Pages", b =>
+                {
+                    b.Navigation("UserPagePermissions");
                 });
 #pragma warning restore 612, 618
         }

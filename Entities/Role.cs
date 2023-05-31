@@ -4,5 +4,6 @@ namespace webapiV2.Entities;
 public enum Role
 {
     Admin,
-    User
+    User,
+    Guest
 }
