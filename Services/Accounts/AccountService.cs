@@ -214,7 +214,7 @@ public class AccountService : IAccountService {
 
         // validate
         if (account.Email != model.Email && _context.Accounts.Any(x => x.Email == model.Email))
-            throw new AppException($"Email adresi '{model.Email}' sistemde mevcut!");
+            throw new AppException($"Email adresi '{model.Email}' sistemde mevcut değil!");
 
         // hash password if it was entered
         if (!string.IsNullOrEmpty(model.Password))

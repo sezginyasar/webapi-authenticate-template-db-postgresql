@@ -8,6 +8,8 @@ using webapiV2.Authorization;
 using webapiV2.Services.Accounts;
 using webapiV2.Services.Emails;
 using Microsoft.OpenApi.Models;
+using webapiV2.Services.PagesAuthorizationSettings;
+using webapiV2.Services.Menus;
 
 internal class Program {
     private static void Main(string[] args) {
@@ -60,6 +62,8 @@ internal class Program {
         builder.Services.AddScoped<IJwtUtils, JwtUtils>();
         builder.Services.AddScoped<IAccountService, AccountService>();
         builder.Services.AddScoped<IEmailService, EmailService>();
+        builder.Services.AddScoped<IPagesServices, PagesServices>();
+        builder.Services.AddScoped<IMenuServices, MenuServices>();
 
         builder.Services.AddAuthentication(auth => {
             auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

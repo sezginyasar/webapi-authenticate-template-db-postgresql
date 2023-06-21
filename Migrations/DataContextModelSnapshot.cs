@@ -159,6 +159,58 @@ namespace webapiV2.Migrations
                     b.ToTable("db_log");
                 });
 
+            modelBuilder.Entity("webapiV2.Entities.Menus.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Icon")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("icon");
+
+                    b.Property<string>("Menuler")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("menuler");
+
+                    b.Property<short>("Order")
+                        .HasColumnType("smallint")
+                        .HasColumnName("order");
+
+                    b.Property<string>("PageName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("page_name");
+
+                    b.Property<int>("ParentId")
+                        .HasColumnType("integer")
+                        .HasColumnName("parent_id");
+
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint")
+                        .HasColumnName("status");
+
+                    b.Property<bool>("SubMenu")
+                        .HasMaxLength(100)
+                        .HasColumnType("boolean")
+                        .HasColumnName("submenu");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("menu");
+                });
+
             modelBuilder.Entity("webapiV2.Entities.PageAuthorization.Pages", b =>
                 {
                     b.Property<int>("Id")

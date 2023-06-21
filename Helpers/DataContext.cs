@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using webapiV2.Entities;
 using webapiV2.Entities.PageAuthorization;
 using webapiV2.Entities.Logs;
+using webapiV2.Entities.Menus;
 
 public class DataContext : DbContext {
     protected readonly IConfiguration Configuration;
@@ -17,7 +18,7 @@ public class DataContext : DbContext {
         => options.UseNpgsql(Configuration.GetConnectionString("PostgreSql"));
     
     public DbSet<Account> Accounts { get; set; }
-    public DbSet<Pages> Pages { get; set; }
-    
+    public DbSet<Pages> Pages { get; set; }    
+    public DbSet<Menu> Menu { get; set; }    
     public DbSet<DbLogs> DbLogs { get; set; }
 }
